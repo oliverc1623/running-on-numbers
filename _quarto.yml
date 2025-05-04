@@ -2,14 +2,14 @@ project:
   type: website
 
 website:
-  title: "running-on-numbers"
+  title: "Running on Numbers"
   navbar:
     right:
       - about.qmd
       - icon: github
-        href: https://github.com/
+        href: https://github.com/oliverc1623
       - icon: twitter
-        href: https://twitter.com
+        href: https://x.com/runnerdude97
 format:
   html:
     theme:

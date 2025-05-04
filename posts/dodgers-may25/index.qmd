@@ -1,0 +1,83 @@
+---
+title: "State of the Dodgers: Dominant Start or Warning Signs Under the Surface? (Early May 2025 Check-in)"
+author: "Oliver Chang"
+date: "2025-05-04"
+categories: [code, analysis, Dodgers]
+image: "image.jpg"
+---
+
+The Dodgers, defending World Series champs, entered 2025 with sky-high expectations. How are they measuring up about 33 games in?
+
+As of early May, they boast a stellar 23-10 (.697) record, sitting atop the NL West with a 1.5-game lead over the Padres. They're currently riding a 7-game win streak.
+
+| Team | W | L | PCT | L10 |
+|---------|-----|------|------|------|
+| Dodgers |  23 | 10 |  0.697   | 7-3
+| Padres     | 21  |   11 |  0.656   | 5-5
+| Giants       | 21    |  13 |   0.618    | 6-4
+| Diamondbacks       | 17    |  16 |   0.515    | 3-7
+| Rockies       | 6    |  27 |   0.182    | 2-8
+
+: NL West Standings
+
+# Offense Comparison
+
+They surpass their record from one year ago today, where they were 21-13 on May 3rd 2024. Let's see how their expected wOBA fares from last year. 
+
+```{python}
+#| code-fold: true
+
+import pandas as pd
+import plotly.express as px
+from helper import process_baseball_data
+
+df = pd.read_csv("data/team-xwoba-2025.csv")
+# Convert 'Game Date' to datetime objects
+df['Game Date'] = pd.to_datetime(df['Game Date'])
+
+# Convert 'XWOBA' to numeric, coercing errors (replacing non-numeric with NaN)
+df['XWOBA'] = pd.to_numeric(df['XWOBA'], errors='coerce')
+
+# Sort the DataFrame by date to ensure correct rolling calculation
+df = df.sort_values(by='Game Date')
+
+# Calculate the rolling average for 'XWOBA'
+# Define the window size (number of games) for the rolling average
+rolling_window = 7
+# Calculate the rolling mean, ensuring enough data points for the window
+df['Rolling XWOBA'] = df['XWOBA'].rolling(window=rolling_window, min_periods=1).mean()
+
+# Create the Plotly line plot
+fig = px.line(df,
+              x='Game Date',
+              y='Rolling XWOBA',
+              title=f'{rolling_window}-Game Rolling Average XWOBA',
+              labels={'Rolling XWOBA': f'{rolling_window}-Game Rolling Avg XWOBA', 'Game Date': 'Date'},
+              markers=True # Add markers to data points
+             )
+
+# Define the league average value
+league_average_xwoba = 0.326
+
+# Add the horizontal line for league average
+fig.add_hline(y=league_average_xwoba,
+              line_dash="dash",        # Style of the line
+              line_color="red",         # Color of the line
+              annotation_text=f"League Avg XWOBA ({league_average_xwoba})", # Text label
+              annotation_position="bottom right" # Position of the label
+             )
+
+# Update layout for better readability
+fig.update_layout(
+    xaxis_title='Game Date',
+    yaxis_title='Rolling XWOBA',
+    hovermode='x unified' # Show hover info for all points at a given x-value
+)
+
+# Display the plot
+fig.show()
+```
+
+![](ohtani-rolling-xwoba.png)
+
+

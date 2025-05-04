@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Running on Numbers",
     "section": "",
-    "text": "Post With Code\n\n\n\nnews\n\ncode\n\nanalysis\n\n\n\n\n\n\n\n\n\nMay 3, 2025\n\n\nHarlow Malloc\n\n\n\n\n\n\n\n\n\n\n\n\nWelcome To My Blog\n\n\n\nnews\n\n\n\n\n\n\n\n\n\nApr 30, 2025\n\n\nTristan O’Malley\n\n\n\n\n\nNo matching items"
+    "text": "State of the Dodgers: Dominant Start or Warning Signs Under the Surface? (Early May 2025 Check-in)\n\n\n\ncode\n\nanalysis\n\nDodgers\n\n\n\n\n\n\n\n\n\nMay 4, 2025\n\n\nOliver Chang\n\n\n\n\n\n\n\n\n\n\n\n\nPost With Code\n\n\n\nnews\n\ncode\n\nanalysis\n\n\n\n\n\n\n\n\n\nMay 3, 2025\n\n\nHarlow Malloc\n\n\n\n\n\n\n\n\n\n\n\n\nWelcome To My Blog\n\n\n\nnews\n\n\n\n\n\n\n\n\n\nApr 30, 2025\n\n\nTristan O’Malley\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/welcome/index.html",
@@ -26,5 +26,12 @@
     "title": "About",
     "section": "",
     "text": "About this blog"
+  },
+  {
+    "objectID": "posts/dodgers-may25/index.html",
+    "href": "posts/dodgers-may25/index.html",
+    "title": "State of the Dodgers: Dominant Start or Warning Signs Under the Surface? (Early May 2025 Check-in)",
+    "section": "",
+    "text": "The Dodgers, defending World Series champs, entered 2025 with sky-high expectations. How are they measuring up about 33 games in?\nAs of early May, they boast a stellar 23-10 (.697) record, sitting atop the NL West with a 1.5-game lead over the Padres. They’re currently riding a 7-game win streak.\n\nNL West Standings\n\n\nTeam\nW\nL\nPCT\nL10\n\n\n\n\nDodgers\n23\n10\n0.697\n7-3\n\n\nPadres\n21\n11\n0.656\n5-5\n\n\nGiants\n21\n13\n0.618\n6-4\n\n\nDiamondbacks\n17\n16\n0.515\n3-7\n\n\nRockies\n6\n27\n0.182\n2-8\n\n\n\n\nOffense Comparison\nThey surpass their record from one year ago today, where they were 21-13 on May 3rd 2024. Let’s see how their expected wOBA fares from last year.\n\n\nCode\nimport pandas as pd\nimport plotly.express as px\n\ndf = pd.read_csv(\"data/team-xwoba-2025.csv\")\n# Convert 'Game Date' to datetime objects\ndf['Game Date'] = pd.to_datetime(df['Game Date'])\n\n# Convert 'XWOBA' to numeric, coercing errors (replacing non-numeric with NaN)\ndf['XWOBA'] = pd.to_numeric(df['XWOBA'], errors='coerce')\n\n# Sort the DataFrame by date to ensure correct rolling calculation\ndf = df.sort_values(by='Game Date')\n\n# Calculate the rolling average for 'XWOBA'\n# Define the window size (number of games) for the rolling average\nrolling_window = 7\n# Calculate the rolling mean, ensuring enough data points for the window\ndf['Rolling XWOBA'] = df['XWOBA'].rolling(window=rolling_window, min_periods=1).mean()\n\n# Create the Plotly line plot\nfig = px.line(df,\n              x='Game Date',\n              y='Rolling XWOBA',\n              title=f'{rolling_window}-Game Rolling Average XWOBA',\n              labels={'Rolling XWOBA': f'{rolling_window}-Game Rolling Avg XWOBA', 'Game Date': 'Date'},\n              markers=True # Add markers to data points\n             )\n\n# Define the league average value\nleague_average_xwoba = 0.326\n\n# Add the horizontal line for league average\nfig.add_hline(y=league_average_xwoba,\n              line_dash=\"dash\",        # Style of the line\n              line_color=\"red\",         # Color of the line\n              annotation_text=f\"League Avg XWOBA ({league_average_xwoba})\", # Text label\n              annotation_position=\"bottom right\" # Position of the label\n             )\n\n# Update layout for better readability\nfig.update_layout(\n    xaxis_title='Game Date',\n    yaxis_title='Rolling XWOBA',\n    hovermode='x unified' # Show hover info for all points at a given x-value\n)\n\n# Display the plot\nfig.show()"
   }
 ]

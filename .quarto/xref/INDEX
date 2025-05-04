@@ -10,5 +10,8 @@
   },
   "about.qmd": {
     "about.html": "a3ca7e03"
+  },
+  "posts/dodgers-may25/index.qmd": {
+    "index.html": "0e1f3e9b"
   }
 }
