@@ -1,6 +1,7 @@
 ---
 title: "State of the Dodgers: Dominant Start or Warning Signs Under the Surface? (Early May 2025 Check-in)"
 author: "Oliver Chang"
+email: oliverc1622@gmail.com
 date: "2025-05-04"
 categories: [code, analysis, Dodgers]
 image: "image.jpg"
@@ -26,6 +27,8 @@ They surpass their record from one year ago today, where they were 21-13 on May 
 
 ```{python}
 #| code-fold: true
+#| label: fig-team-xwoba
+#| fig-cap: "Team XWOBA"
 
 import pandas as pd
 import plotly.express as px
@@ -47,7 +50,8 @@ df["Plot Date"] = df['Game Date'].apply(
 df["Year"] = df["Game Date"].dt.year
 df = df.sort_values(by="Plot Date")
 
-fig = px.line(df, x="Plot Date", y="Rolling XWOBA", color="Year", markers=True)
+fig = px.line(df, x="Plot Date", y="Rolling XWOBA", color="Year", markers=True,
+    color_discrete_sequence=['blue', 'orange'])
 
 league_average_xwoba_2025 = 0.326
 fig.add_hline(y=league_average_xwoba_2025,
@@ -61,14 +65,39 @@ fig.update_layout(
     xaxis_title='Game Date',
     yaxis_title='Rolling XWOBA',
     hovermode='x unified',
+    title="Dodgers xwOBA (2024 vs 2025)"
 )
 
 fig.show()
 ```
 
+@fig-team-xwoba illustrates the Dodgers' team rolling xwOBA from the start of the season throughout early May for both 2024 and 2025.
+
+We can see that the 2025 Dodgers started the season significantly hotter offensively compared to 2024, based on expected wOBA. However, their performance has dipped recently, bringing their rolling xwOBA closer to their 2024 levels around the same point in the season. Both years show the Dodgers performing well above the 2025 league average xwOBA.
+
+Will the rest of 2025 look like 2024?
+
 ```{python}
-df
+#| code-fold: true
+#| label: fig-team-xwoba2024
+#| fig-cap: "Team XWOBA 2024"
+
+df_2024 = process_baseball_data(xwoba_2024, 2024)
+fig = px.line(df_2024, x="Game Date", y="Rolling XWOBA", markers=True, color_discrete_sequence=['orange'])
+
+league_average_xwoba_2024 = 0.312
+fig.add_hline(y=league_average_xwoba_2024,
+    line_dash="dash",
+    line_color="red",
+    annotation_text=f"2024 MLB Avg XWOBA ({league_average_xwoba_2024})",
+    annotation_position="bottom right")
+
+fig.show()
 ```
+
+# Shohei Ohtani
+
+While the team's overall offensive performance has shown some regression towards 2024 levels, it's important to look at individual player contributions. Let's examine Shohei Ohtani's rolling xwOBA as an example.
 
 ![](ohtani-rolling-xwoba.png)
 
