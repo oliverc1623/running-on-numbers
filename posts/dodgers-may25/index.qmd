@@ -12,11 +12,11 @@ As of early May, they boast a stellar 23-10 (.697) record, sitting atop the NL W
 
 | Team | W | L | PCT | L10 |
 |---------|-----|------|------|------|
-| Dodgers |  23 | 10 |  0.697   | 7-3
-| Padres     | 21  |   11 |  0.656   | 5-5
-| Giants       | 21    |  13 |   0.618    | 6-4
-| Diamondbacks       | 17    |  16 |   0.515    | 3-7
-| Rockies       | 6    |  27 |   0.182    | 2-8
+| Dodgers |  23 | 11 |  0.676   | 7-3
+| Padres     | 22  |   11 |  0.667   | 6-4
+| Giants       | 22    |  13 |   0.629    | 6-4
+| Diamondbacks       | 18    |  16 |   0.529    | 4-6
+| Rockies       | 6    |  28 |   0.176    | 2-8
 
 : NL West Standings
 
@@ -30,52 +30,44 @@ They surpass their record from one year ago today, where they were 21-13 on May 
 import pandas as pd
 import plotly.express as px
 from helper import process_baseball_data
+import plotly.graph_objects as go
 
-df = pd.read_csv("data/team-xwoba-2025.csv")
-# Convert 'Game Date' to datetime objects
-df['Game Date'] = pd.to_datetime(df['Game Date'])
+REFERENCE_YEAR = 2025
 
-# Convert 'XWOBA' to numeric, coercing errors (replacing non-numeric with NaN)
-df['XWOBA'] = pd.to_numeric(df['XWOBA'], errors='coerce')
+# data load and prep
+xwoba_2025 = "data/team-xwoba-2025.csv"
+xwoba_2024 = "data/team-xwoba-2024.csv"
+df_2025 = process_baseball_data(xwoba_2025, 2025, end_date_str="2025-05-03")
+df_2024 = process_baseball_data(xwoba_2024, 2024, end_date_str="2024-05-03")
 
-# Sort the DataFrame by date to ensure correct rolling calculation
-df = df.sort_values(by='Game Date')
+df = pd.concat([df_2025, df_2024], ignore_index=True)
+df["Plot Date"] = df['Game Date'].apply(
+    lambda dt: pd.Timestamp(year=REFERENCE_YEAR, month=dt.month, day=dt.day)
+)
+df["Year"] = df["Game Date"].dt.year
+df = df.sort_values(by="Plot Date")
 
-# Calculate the rolling average for 'XWOBA'
-# Define the window size (number of games) for the rolling average
-rolling_window = 7
-# Calculate the rolling mean, ensuring enough data points for the window
-df['Rolling XWOBA'] = df['XWOBA'].rolling(window=rolling_window, min_periods=1).mean()
+fig = px.line(df, x="Plot Date", y="Rolling XWOBA", color="Year", markers=True)
 
-# Create the Plotly line plot
-fig = px.line(df,
-              x='Game Date',
-              y='Rolling XWOBA',
-              title=f'{rolling_window}-Game Rolling Average XWOBA',
-              labels={'Rolling XWOBA': f'{rolling_window}-Game Rolling Avg XWOBA', 'Game Date': 'Date'},
-              markers=True # Add markers to data points
-             )
+league_average_xwoba_2025 = 0.326
+fig.add_hline(y=league_average_xwoba_2025,
+    line_dash="dash",
+    line_color="red",
+    annotation_text=f"2025 MLB Avg XWOBA ({league_average_xwoba_2025})",
+    annotation_position="bottom right")
 
-# Define the league average value
-league_average_xwoba = 0.326
-
-# Add the horizontal line for league average
-fig.add_hline(y=league_average_xwoba,
-              line_dash="dash",        # Style of the line
-              line_color="red",         # Color of the line
-              annotation_text=f"League Avg XWOBA ({league_average_xwoba})", # Text label
-              annotation_position="bottom right" # Position of the label
-             )
-
-# Update layout for better readability
+# Update layout and legend
 fig.update_layout(
     xaxis_title='Game Date',
     yaxis_title='Rolling XWOBA',
-    hovermode='x unified' # Show hover info for all points at a given x-value
+    hovermode='x unified',
 )
 
-# Display the plot
 fig.show()
+```
+
+```{python}
+df
 ```
 
 ![](ohtani-rolling-xwoba.png)
