@@ -8,6 +8,8 @@ image: "image.jpg"
 ---
 
 ```{python}
+#| code-fold: true
+
 import pandas as pd
 import plotly.express as px
 from helper import process_baseball_data
@@ -18,21 +20,21 @@ REFERENCE_YEAR = 2025
 
 The Dodgers, defending World Series champs, entered 2025 with sky-high expectations. How are they measuring up about 33 games in?
 
-As of early May, they boast a stellar 23-10 (.697) record, sitting atop the NL West with a 1.5-game lead over the Padres. They're currently riding a 7-game win streak.
+As of early May, they boast a stellar 27-14 (.659) record, sitting atop the NL West with a 1-game lead over the Padres. They're recently split a 4-game series against the Arizona Diamondbacks. The Dbacks could very well be a play-off opponent. A series split, coupled with a sub-0.500 record against winning teams, could orchestrate a rivertting play-off scene. 
 
 | Team | W | L | PCT | L10 |
 |---------|-----|------|------|------|
-| Dodgers |  23 | 11 |  0.676   | 7-3
-| Padres     | 22  |   11 |  0.667   | 6-4
-| Giants       | 22    |  13 |   0.629    | 6-4
-| Diamondbacks       | 18    |  16 |   0.529    | 4-6
-| Rockies       | 6    |  28 |   0.176    | 2-8
+| Dodgers |  27 | 14 |  0.659   | 6-4
+| Padres     | 25  |   14 |  0.641   | 7-3
+| Giants       | 24    |  18 |   0.571    | 5-5
+| Diamondbacks       | 22    |  20 |   0.524    | 5-5
+| Rockies       | 7    |  34 |   0.171    | 1-9
 
 : NL West Standings
 
 # Offense Comparison
 
-They surpass their record from one year ago today, where they were 27-14 41 games into the season. Let's see how their expected wOBA fares from last year. 
+They surpass their record from one year ago today, where they were 27-14 and 41 games into the season. Let's see how their expected wOBA fares from last year. 
 
 ```{python}
 #| code-fold: true
@@ -117,10 +119,22 @@ fig.update_layout(
 fig.show()
 ```
 
+Let's sure hope we do not witness another late-May struggle. 
+
 # Shohei Ohtani
 
-While the team's overall offensive performance has shown some regression towards 2024 levels, it's important to look at individual player contributions. Let's examine Shohei Ohtani's rolling xwOBA as an example.
+While the team's overall offensive performance has shown some regression towards 2024 levels, it's important to look at individual player contributions. Let's examine Shohei Ohtani's rolling xwOBA as an example. 
 
 ![](ohtani-rolling-xwoba.png)
 
+I am hedging my bets that Ohtani will win NL MVP again. Observe that Ohtani exhibits cylical patterns in his rolling xwOBA. 
 
+![](ohtani-chart.png)
+
+In 2021, Ohtani brandished an above 0.500 xwOBA during the summer months of the season. In 2021, writes a similar story to 2021 with the addition of a 1.0 OPS in August. Last year, a year unlike any other, Ohtani wins MVP, concluding his 2024 campaign with a 1.225 OPS in September and October. 
+
+*Are we due for another Shohei Summer?*
+
+I rooting for it. However, with Ohtani pitching on the horizon after the all-star break, it will interesting to see how that will influence with offensive performance heading into the fall. 2023 Ohtani was as close as we will ever get to the most athletically impressive season in all of baseball. His batting slash line was .304/.412/.654 and boasted a 142 ERA+ on the season. Unfortunately, Ohtani had a season ending injury in his throwing elbow in 2023. 
+
+Is this symbolic of Icarsus's Hubris? 2025, 2026, and 2027 will determine if Ohtani is Icarsus or a living God, standing among mere mortals. With only half a season of pitching, it is unkliekly Ohtani will garner any Cy Young votes. However, a full season of pitching, alongside a 1.0 OPS, will cement Ohtani as the greatest of all time. 
