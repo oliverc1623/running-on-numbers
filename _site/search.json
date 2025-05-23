@@ -1,26 +1,5 @@
 [
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Running on Numbers",
-    "section": "",
-    "text": "State of the Dodgers: Dominant Start or Warning Signs Under the Surface? (Mid May 2025 Check-in)\n\n\n\ncode\n\nanalysis\n\nDodgers\n\n\n\n\n\n\n\n\n\nMay 12, 2025\n\n\nOliver Chang\n\n\n\n\n\n\n\n\n\n\n\n\nPost With Code\n\n\n\nnews\n\ncode\n\nanalysis\n\n\n\n\n\n\n\n\n\nMay 3, 2025\n\n\nHarlow Malloc\n\n\n\n\n\n\n\n\n\n\n\n\nWelcome To My Blog\n\n\n\nnews\n\n\n\n\n\n\n\n\n\nApr 30, 2025\n\n\nTristan O’Malley\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "posts/welcome/index.html",
-    "href": "posts/welcome/index.html",
-    "title": "Welcome To My Blog",
-    "section": "",
-    "text": "This is the first post in a Quarto blog. Welcome!\n\nSince this post doesn’t specify an explicit image, the first image in the post will be used in the listing page of posts."
-  },
-  {
-    "objectID": "posts/post-with-code/index.html",
-    "href": "posts/post-with-code/index.html",
-    "title": "Post With Code",
-    "section": "",
-    "text": "This is a post with executable code."
-  },
-  {
     "objectID": "about.html",
     "href": "about.html",
     "title": "About",
@@ -32,13 +11,27 @@
     "href": "posts/dodgers-may25/index.html",
     "title": "State of the Dodgers: Dominant Start or Warning Signs Under the Surface? (Mid May 2025 Check-in)",
     "section": "",
-    "text": "Code\nimport pandas as pd\nimport plotly.express as px\nfrom helper import process_baseball_data\nimport plotly.graph_objects as go\n\nREFERENCE_YEAR = 2025\nThe Dodgers, defending World Series champs, entered 2025 with sky-high expectations. How are they measuring up about 33 games in?\nAs of early May, they boast a stellar 27-14 (.659) record, sitting atop the NL West with a 1-game lead over the Padres. They’re recently split a 4-game series against the Arizona Diamondbacks. The Dbacks could very well be a play-off opponent. A series split, coupled with a sub-0.500 record against winning teams, could orchestrate a rivertting play-off scene."
+    "text": "Code\nimport pandas as pd\nimport plotly.express as px\nfrom helper import process_baseball_data\nimport plotly.graph_objects as go\n\nREFERENCE_YEAR = 2025\n\n\nThe Dodgers, defending World Series champs, entered 2025 with sky-high expectations. How are they measuring up about 33 games in?\nAs of early May, they boast a stellar 27-14 (.659) record, sitting atop the NL West with a 1-game lead over the Padres. They’re recently split a 4-game series against the Arizona Diamondbacks. The Dbacks could very well be a play-off opponent. A series split, coupled with a sub-0.500 record against winning teams, could orchestrate a rivertting play-off scene.\n\nNL West Standings\n\n\nTeam\nW\nL\nPCT\nL10\n\n\n\n\nDodgers\n27\n14\n0.659\n6-4\n\n\nPadres\n25\n14\n0.641\n7-3\n\n\nGiants\n24\n18\n0.571\n5-5\n\n\nDiamondbacks\n22\n20\n0.524\n5-5\n\n\nRockies\n7\n34\n0.171\n1-9\n\n\n\n\nOffense Comparison\nThey surpass their record from one year ago today, where they were 27-14 and 41 games into the season. Let’s see how their expected wOBA fares from last year.\n\n\nCode\n# data load and prep\nxwoba_2025 = \"data/team-xwoba-2025.csv\"\nxwoba_2024 = \"data/team-xwoba-2024.csv\"\ndf_2025 = process_baseball_data(xwoba_2025, 2025, end_date_str=\"2025-05-03\")\ndf_2024 = process_baseball_data(xwoba_2024, 2024, end_date_str=\"2024-05-03\")\n\ndf = pd.concat([df_2025, df_2024], ignore_index=True)\ndf[\"Plot Date\"] = df['Game Date'].apply(\n    lambda dt: pd.Timestamp(year=REFERENCE_YEAR, month=dt.month, day=dt.day)\n)\ndf[\"Year\"] = df[\"Game Date\"].dt.year\ndf = df.sort_values(by=\"Plot Date\")\n\nfig = px.line(df, x=\"Plot Date\", y=\"Rolling XWOBA\", color=\"Year\", markers=True,\n    color_discrete_sequence=['blue', 'orange'])\n\nleague_average_xwoba_2025 = 0.326\nfig.add_hline(y=league_average_xwoba_2025,\n    line_dash=\"dash\",\n    line_color=\"red\",\n    annotation_text=f\"2025 MLB Avg XWOBA ({league_average_xwoba_2025})\",\n    annotation_position=\"bottom right\")\n\n# Update layout and legend\nfig.update_layout(\n    xaxis_title='Game Date',\n    yaxis_title='Rolling XWOBA',\n    hovermode='x unified',\n    title=\"Dodgers xwOBA (2024 vs 2025)\"\n)\n\nfig.show()\n\n\n\n\n\n\n\n        \n        \n        \n\n\n(a) Team XWOBA\n\n\n\n\n\n\n                            \n                                            \n\n\n(b)\n\n\n\n\n\nFigure 1\n\n\n\n\nA hot start for the Dodgers! Figure 1 illustrates the Dodgers’ team rolling xwOBA from the start of the season throughout mid May for both 2024 and 2025.\nWe can see that the 2025 Dodgers started the season significantly hotter offensively compared to 2024, based on expected wOBA. However, their performance has dipped recently, bringing their rolling xwOBA closer to their 2024 levels around the same point in the season. Both years show the Dodgers performing well above the 2025 league average xwOBA.\nWill the rest of 2025 look like 2024?\n\n\nCode\n# data load and prep\nxwoba_2025 = \"data/team-xwoba-2025.csv\"\nxwoba_2024 = \"data/team-xwoba-2024.csv\"\ndf_2025 = process_baseball_data(xwoba_2025, 2025, end_date_str=\"2025-05-03\")\ndf_2024 = process_baseball_data(xwoba_2024, 2024, end_date_str=\"2024-10-01\")\n\ndf = pd.concat([df_2025, df_2024], ignore_index=True)\ndf[\"Plot Date\"] = df['Game Date'].apply(\n    lambda dt: pd.Timestamp(year=REFERENCE_YEAR, month=dt.month, day=dt.day)\n)\ndf[\"Year\"] = df[\"Game Date\"].dt.year\ndf = df.sort_values(by=\"Plot Date\")\n\nfig = px.line(df, x=\"Plot Date\", y=\"Rolling XWOBA\", color=\"Year\", markers=True,\n    color_discrete_sequence=['blue', 'orange'])\n\nleague_average_xwoba_2024 = 0.312\nfig.add_hline(y=league_average_xwoba_2024,\n    line_dash=\"dash\",\n    line_color=\"red\",\n    annotation_text=f\"2024 MLB Avg XWOBA ({league_average_xwoba_2024})\",\n    annotation_position=\"bottom right\")\n\nfig.update_layout(\n    xaxis_title='Game Date',\n    yaxis_title='Rolling XWOBA',\n    hovermode='x unified',\n    title=\"Dodgers xwOBA (2024 vs 2025)\"\n)\n\nfig.show()\n\n\n\n\n                            \n                                            \n\n\nFigure 2: Team XWOBA 2024\n\n\n\n\nLet’s sure hope we do not witness another late-May struggle.\n\n\nShohei Ohtani\nWhile the team’s overall offensive performance has shown some regression towards 2024 levels, it’s important to look at individual player contributions. Let’s examine Shohei Ohtani’s rolling xwOBA as an example.\n\nI am hedging my bets that Ohtani will win NL MVP again. Observe that Ohtani exhibits cylical patterns in his rolling xwOBA.\n\nIn 2021, Ohtani brandished an above 0.500 xwOBA during the summer months of the season. In 2021, writes a similar story to 2021 with the addition of a 1.0 OPS in August. Last year, a year unlike any other, Ohtani wins MVP, concluding his 2024 campaign with a 1.225 OPS in September and October.\nAre we due for another Shohei Summer?\nI rooting for it. However, with Ohtani pitching on the horizon after the all-star break, it will interesting to see how that will influence with offensive performance heading into the fall. 2023 Ohtani was as close as we will ever get to the most athletically impressive season in all of baseball. His batting slash line was .304/.412/.654 and boasted a 142 ERA+ on the season. Unfortunately, Ohtani had a season ending injury in his throwing elbow in 2023.\nIs this symbolic of Icarsus’s Hubris? 2025, 2026, and 2027 will determine if Ohtani is Icarsus or a living God, standing among mere mortals. With only half a season of pitching, it is unkliekly Ohtani will garner any Cy Young votes. However, a full season of pitching, alongside a 1.0 OPS, will cement Ohtani as the greatest of all time."
   },
   {
-    "objectID": "posts/dodgers-may25/index.html#hyeseong-kim",
-    "href": "posts/dodgers-may25/index.html#hyeseong-kim",
-    "title": "State of the Dodgers: Dominant Start or Warning Signs Under the Surface? (Mid May 2025 Check-in)",
-    "section": "Hyeseong Kim",
-    "text": "Hyeseong Kim"
+    "objectID": "posts/post-with-code/index.html",
+    "href": "posts/post-with-code/index.html",
+    "title": "Post With Code",
+    "section": "",
+    "text": "This is a post with executable code."
+  },
+  {
+    "objectID": "posts/welcome/index.html",
+    "href": "posts/welcome/index.html",
+    "title": "Welcome To My Blog",
+    "section": "",
+    "text": "This is the first post in a Quarto blog. Welcome!\n\nSince this post doesn’t specify an explicit image, the first image in the post will be used in the listing page of posts."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Running on Numbers",
+    "section": "",
+    "text": "XWOBA VS WOBA\n\n\n\ncode\n\nanalysis\n\nDodgers\n\n\n\n\n\n\n\n\n\nMay 12, 2025\n\n\nOliver Chang\n\n\n\n\n\n\n\n\n\n\n\n\nState of the Dodgers: Dominant Start or Warning Signs Under the Surface? (Mid May 2025 Check-in)\n\n\n\ncode\n\nanalysis\n\nDodgers\n\n\n\n\n\n\n\n\n\nMay 12, 2025\n\n\nOliver Chang\n\n\n\n\n\n\n\n\n\n\n\n\nPost With Code\n\n\n\nnews\n\ncode\n\nanalysis\n\n\n\n\n\n\n\n\n\nMay 3, 2025\n\n\nHarlow Malloc\n\n\n\n\n\n\n\n\n\n\n\n\nWelcome To My Blog\n\n\n\nnews\n\n\n\n\n\n\n\n\n\nApr 30, 2025\n\n\nTristan O’Malley\n\n\n\n\n\nNo matching items"
   }
 ]
