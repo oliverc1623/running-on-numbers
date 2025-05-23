@@ -1,19 +1,22 @@
 ---
 title: "About"
-image: profile.jpg
+image: w2w.jpg
 about:
   template: jolla
   links:
     - icon: twitter
       text: Twitter
-      href: https://twitter.com
+      href: https://x.com/runnerdude97
     - icon: linkedin
       text: LinkedIn
-      href: https://linkedin.com
+      href: https://www.linkedin.com/in/oliver-chang-423a10171/
     - icon: github
       text: Github
-      href: https://github.com
+      href: https://github.com/oliverc1623
+    - icon: strava
+      text: Strava
+      href: https://www.strava.com/athletes/28637291
 
 ---
 
-About this blog
+Runner, PhD Student, and baseball fan - but not necessarily in that order.
