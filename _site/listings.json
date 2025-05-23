@@ -3,9 +3,16 @@
     "listing": "/index.html",
     "items": [
       "/posts/xwoba_regression/index.html",
-      "/posts/dodgers-may25/index.html",
-      "/posts/post-with-code/index.html",
-      "/posts/welcome/index.html"
+      "/posts/dodgers-may25/index.html"
+    ]
+  },
+  {
+    "listing": "/test.html",
+    "items": [
+      "/papers/xwoba_regression/index.html",
+      "/papers/dodgers-may25/index.html",
+      "/papers/post-with-code/index.html",
+      "/papers/welcome/index.html"
     ]
   }
 ]

@@ -3,8 +3,8 @@ title: "State of the Dodgers: Dominant Start or Warning Signs Under the Surface?
 author: "Oliver Chang"
 email: oliverc1622@gmail.com
 date: "2025-05-12"
-categories: [code, analysis, Dodgers]
-image: "image.jpg"
+categories: [python, analysis, Dodgers]
+image: "dodgers.jpg"
 ---
 
 ```{python}

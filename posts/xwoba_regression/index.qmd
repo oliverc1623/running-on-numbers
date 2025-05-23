@@ -3,7 +3,7 @@ title: "XWOBA VS WOBA"
 author: "Oliver Chang"
 email: oliverc1622@gmail.com
 date: "2025-05-12"
-categories: [code, analysis, Dodgers]
-image: "image.jpg"
+categories: [python, analysis, MLB]
+image: "andy-pagse.jpeg"
 ---
 

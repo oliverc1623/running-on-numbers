@@ -16,5 +16,20 @@
   },
   "posts/xwoba_regression/index.qmd": {
     "index.html": "deb454a8"
+  },
+  "test.qmd": {
+    "test.html": "f985f757"
+  },
+  "papers/post-with-code/index.qmd": {
+    "index.html": "40e50129"
+  },
+  "papers/xwoba_regression/index.qmd": {
+    "index.html": "d3213cfb"
+  },
+  "papers/welcome/index.qmd": {
+    "index.html": "83638631"
+  },
+  "papers/dodgers-may25/index.qmd": {
+    "index.html": "e35366df"
   }
 }
