@@ -1,9 +1,20 @@
 ---
-title: "XWOBA VS WOBA"
+title: "Lucky and Unlucky Hitters"
 author: "Oliver Chang"
 email: oliverc1622@gmail.com
-date: "2025-05-12"
+date: "2025-05-23"
 categories: [python, analysis, MLB]
-image: "andy-pagse.jpeg"
+image: "baseball-clover2.png"
 ---
 
+<iframe src="https://streamable.com/mlbfilmroom/00u91h9ad3Lty1uCX356/unlucky-joc?partnerId=web_video-playback-page_video-share" width="560" height="315"></iframe>
+
+```{python}
+import pandas as pd
+```
+
+
+```{python}
+df = pd.read_csv("expected_stats-05-23-2025.csv")
+df.head(10)
+```
