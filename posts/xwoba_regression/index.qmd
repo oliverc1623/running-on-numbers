@@ -7,9 +7,6 @@ categories: [python, analysis, MLB]
 image: "baseball-clover-cartoon.png"
 ---
 
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9970006254821333"
-     crossorigin="anonymous"></script>
-
 ![](baseball-clover-cartoon.png){width=50%}
 
 There is no denying that baseball has an element of luck. Sometimes the hardest hit balls find a glove, and sometimes a blooper falls in for a hit. We can try to quantify this luck by looking at the difference between a player's actual stats and their expected stats. 
