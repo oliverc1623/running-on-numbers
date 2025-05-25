@@ -4,17 +4,48 @@ author: "Oliver Chang"
 email: oliverc1622@gmail.com
 date: "2025-05-23"
 categories: [python, analysis, MLB]
-image: "baseball-clover2.png"
+image: "baseball-clover-cartoon.png"
 ---
+
+![](baseball-clover-cartoon.png){width=50%}
+
+There is no denying that baseball has an element of luck. Sometimes the hardest hit balls find a glove, and sometimes a blooper falls in for a hit. We can try to quantify this luck by looking at the difference between a player's actual stats and their expected stats. 
+
+# Expected Batting Average
+
+First let's take a look at [expected batting average (xBA)](https://www.mlb.com/glossary/statcast/expected-batting-average). We grab the latest [expected statistics leaderboard](https://baseballsavant.mlb.com/leaderboard/expected_statistics?type=batter&year=2025&position=&team=&filterType=bip&min=q&sort=7&sortDir=asc) from baseball savant. 
+
+```{python}
+#| code-fold: true
+import pandas as pd
+
+df = pd.read_csv("expected_stats.csv")
+df["est_ba_minus_ba_diff"].describe().round(4)
+```
+
+The unluckiest batter has as a difference of -0.075, while the luckiest batter has a difference of 0.066. As it stands, Joc Pederson of the Texas Ranges holds unluckiest BA and Pavin Smith of the Arizona Diamondbacks boasts the luckiest BA. Interestingly, the mean xBA is -0.0069, suggesting that the average MLB hitter (with the minimum number of BIP/PA) is slightly unlucky when it comes to batting average.
 
 <iframe src="https://streamable.com/mlbfilmroom/00u91h9ad3Lty1uCX356/unlucky-joc?partnerId=web_video-playback-page_video-share" width="560" height="315"></iframe>
 
+Above shows Joc Pederson lining out to Samad Taylor. The batted ball had a hit probability of [78% per baseballsavant](https://baseballsavant.mlb.com/gamefeed?gamePk=778083). Conversely, Pavin Smith's single to Hyeseong Kim had a 94% chance of becoming an out.
+
+<iframe src="https://streamable.com/m/pavin-smith-singles-on-a-ground-ball-to-second-baseman-hyeseong-kim-geral?partnerId=web_video-playback-page_video-share" width="560" height="315"></iframe>
+
+Pederson and Smith are just two players on difference ends of the spectrum. Here is a histogram, illustrating the disitrbution of expected batting average differences. Oberve the slight left-skew distribution.
+
 ```{python}
-import pandas as pd
+import plotly.express as px
+fig =  px.histogram(df, x="est_ba_minus_ba_diff", marginal="rug", hover_data=["last_name, first_name"])
+fig.show()
 ```
 
+Can we further investigate wich types of batters are unlucky?
 
 ```{python}
-df = pd.read_csv("expected_stats-05-23-2025.csv")
-df.head(10)
+df["est_woba_minus_woba_diff"].describe().round(4)
+```
+
+```{python}
+fig =  px.histogram(df, x="est_woba_minus_woba_diff", marginal="rug", hover_data=["last_name, first_name"])
+fig.show()
 ```
