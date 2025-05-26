@@ -6,6 +6,7 @@ project:
 website:
   title: "Running on Numbers"
   favicon: favicon_io/favicon.ico
+  google-analytics: "G-BJQPN133Q6"
   navbar:
     right:
       - about.qmd
