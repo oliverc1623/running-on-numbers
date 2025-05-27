@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/predicting-xwoba-with-swingpath/index.html",
       "/posts/xwoba_regression/index.html",
       "/posts/dodgers-may25/index.html"
     ]

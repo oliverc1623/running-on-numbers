@@ -1,0 +1,10 @@
+---
+title: "Predicting xwOBA with Swing Path"
+author: "Oliver Chang"
+email: oliverc1622@gmail.com
+date: "2025-05-25"
+categories: [pytorch, regression, MLB]
+image: "swingpath-img.png"
+---
+
+
