@@ -7,4 +7,40 @@ categories: [pytorch, regression, MLB]
 image: "swingpath-img.png"
 ---
 
+```{python}
+import pandas as pd
 
+df = pd.read_csv("data.csv")
+df.describe()
+```
+
+```{python}
+df.columns
+```
+
+```{python}
+import numpy as np
+import plotly.express as px
+import plotly.graph_objects as go
+from sklearn.svm import SVR
+
+mesh_size = .02
+margin = 0
+
+X = df[["attack_angle", "attack_direction"]]
+y = df[["xwoba"]]
+
+model = SVR(C=1.)
+model.fit(X, y)
+
+# Create a mesh grid on which we will run our model
+x_min, x_max = X.attack_angle.min() - margin, X.attack_angle.max() + margin
+y_min, y_max = X.attack_direction.min() - margin, X.attack_direction.max() + margin
+xrange = np.arange(x_min, x_max, mesh_size)
+yrange = np.arange(y_min, y_max, mesh_size)
+xx, yy = np.meshgrid(xrange, yrange)
+
+# Run model
+pred = model.predict(np.c_[xx.ravel(), yy.ravel()])
+pred = pred.reshape(xx.shape)
+```
