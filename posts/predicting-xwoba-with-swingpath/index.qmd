@@ -43,4 +43,10 @@ xx, yy = np.meshgrid(xrange, yrange)
 # Run model
 pred = model.predict(np.c_[xx.ravel(), yy.ravel()])
 pred = pred.reshape(xx.shape)
+
+# Generate the plot
+fig = px.scatter_3d(df, x='attack_angle', y='attack_direction', z='xwoba')
+fig.update_traces(marker=dict(size=5))
+fig.add_traces(go.Surface(x=xrange, y=yrange, z=pred, name='pred_surface'))
+fig.show()
 ```
