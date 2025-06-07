@@ -46,5 +46,8 @@
   },
   "papers/investigating-cnns/index.qmd": {
     "index.html": "d5642f4e"
+  },
+  "papers/ceriad/index.qmd": {
+    "index.html": "931a78a1"
   }
 }

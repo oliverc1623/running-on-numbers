@@ -19,6 +19,7 @@
   {
     "listing": "/papers.html",
     "items": [
+      "/papers/ceriad/index.html",
       "/papers/investigating-cnns/index.html"
     ]
   }

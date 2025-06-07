@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Oliver Chang, Anuj Ajay Kamat, William Self">
+<meta name="dcterms.date" content="2024-06-20">
 
-<title>Papers – Running on Numbers</title>
+<title>Investigating Neural Network Architectures, Techniques, and Datasets for Autonomous Navigation in Simulation – Running on Numbers</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,26 +25,24 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./favicon_io/favicon.ico" rel="icon">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-0815c480559380816a4d1ea211a47e91.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-6bdd2aebeb936dcddaa5f935a5de481c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../favicon_io/favicon.ico" rel="icon">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-0815c480559380816a4d1ea211a47e91.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-6bdd2aebeb936dcddaa5f935a5de481c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -70,35 +70,6 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
 <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-BJQPN133Q6"></script>
 
 <script type="text/javascript">
@@ -108,48 +79,25 @@ function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', 'G-BJQPN133Q6', { 'anonymize_ip': true});
 </script>
+<style>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
+      .quarto-title-block .quarto-title-banner {
+        background: banner.png;
       }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
+</style>
 
-<link rel="stylesheet" href="styles.css">
+
+<link rel="stylesheet" href="../../styles.css">
 </head>
 
-<body class="nav-fixed quarto-light">
+<body class="nav-fixed fullcontent quarto-light">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Running on Numbers</span>
     </a>
   </div>
@@ -160,15 +108,15 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html"> 
+    <a class="nav-link" href="../../index.html"> 
 <span class="menu-text">Running on Numbers</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./papers.html" aria-current="page"> 
+    <a class="nav-link" href="../../papers.html"> 
 <span class="menu-text">Papers</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link" href="../../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item compact">
@@ -189,136 +137,61 @@ window.Quarto = {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Investigating Neural Network Architectures, Techniques, and Datasets for Autonomous Navigation in Simulation</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">python</div>
+                <div class="quarto-category">DRL</div>
+                <div class="quarto-category">LLMs</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Oliver Chang, Anuj Ajay Kamat, William Self </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">June 20, 2024</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Q05O">CNN <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RFJM">DRL <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TExNcw==">LLMs <span class="quarto-category-count">(1)</span></div><div class="category" data-category="cHl0aG9u">python <span class="quarto-category-count">(2)</span></div><div class="category" data-category="U2ltdWxhdGlvbg==">Simulation <span class="quarto-category-count">(1)</span></div></div></div>
+    
 <!-- main -->
-<main class="content column-page-left" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Papers</h1>
-</div>
-
-
-
-<div class="quarto-title-meta column-page-left">
-
-    
-  
-    
-  </div>
-  
-
-
-</header>
+<main class="content quarto-banner-title-block" id="quarto-document-content">
 
 
 
 
 
+<p><img src="main-fig.svg" class="img-fluid"></p>
+<section id="abstract" class="level1">
+<h1>Abstract</h1>
+<p>Deep reinforcement learning (DRL) is becoming an increasingly common technique to train agents to accomplish autonomous driving tasks (Kiran et al., 2021). However, DRL models, trained end-to-end, lack internal reasoning and planning for complex states and large action spaces (Dasgupta et al., 2023). Large language models (LLMs) could provide reasoning for autonomous vehicle systems and have demonstrate high-level reasoning across various tasks such as text generation (Wei et al., 2023), visual question and answer (VQA) (Liu et al., 2023a), and image generation (Huang et al., 2022). We investigate how to integrate cognitive reasoning from LLMs into autonomous vehicles that are trained with DRL. In this paper, we adapt the Planner-Actor-Reporter framework for autonomous driving tasks in Highway-Env and CARLA (Dasgupta et al., 2023; Leurent, 2018; Dosovitskiy et al., 2017). The work from Dasgupta et al.&nbsp;(2023) introduce the Planner-Actor-Reporter framework and apply it in gridworld reinforcement learning environments. We extend on their research by applying their framework to two autonomous driving environments, leveraging LLaVA as a visual reporter, and demonstrating common-sense driving reasoning using GPT-3.5-Turbo as the planner (Liu et al., 2023a). This paper opens new possibilities for safe, reliable, and interpretable decision making for autonomous vehicles by leveraging LLMs.</p>
+<hr>
+<p>Checkout our full paper <a href="https://openreview.net/forum?id=B0oFBKFlgs">here</a>!</p>
 
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="listing-actions-group">
-   <div class="input-group input-group-sm quarto-listing-sort">
-    <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
-    <select id="listing-listing-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-listing'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
-      <option value="" disabled="" selected="" hidden="">Order By</option>
-      <option value="index" data-direction="asc">Default</option>
-      <option value="listing-title" data-direction="asc">
-        Title
-      </option>
-      <option value="listing-date-sort" data-direction="asc">
-        Date - Oldest
-      </option>
-      <option value="listing-date-sort" data-direction="desc">
-        Date - Newest
-      </option>
-      <option value="listing-author" data-direction="asc">
-        Author
-      </option>
-    </select>
-  </div>
-    <div class="input-group input-group-sm quarto-listing-filter">
-      <span class="input-group-text"><i class="bi bi-search"></i></span>
-      <input type="text" class="search form-control" placeholder="Filter">
-    </div>
-</div>
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="cHl0aG9uJTJDRFJMJTJDTExNcw==" data-listing-date-sort="1718866800000" data-listing-file-modified-sort="1749285608005" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="205">
-<div class="thumbnail"><a href="./papers/ceriad/index.html" class="no-external">
 
-<img loading="lazy" src="./papers/ceriad/main-fig.svg" class="thumbnail-image">
+</section>
 
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./papers/ceriad/index.html" class="no-external">Investigating Neural Network Architectures, Techniques, and Datasets for Autonomous Navigation in Simulation</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('cHl0aG9u'); return false;">python</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('RFJM'); return false;">DRL</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('TExNcw=='); return false;">LLMs</div>
-
-</div>
-<div class="delink listing-description"><a href="./papers/ceriad/index.html" class="no-external">
-Deep reinforcement learning (DRL) is becoming an increasingly common technique to train agents to accomplish autonomous driving tasks (Kiran et al., 2021). However, DRL…
-</a></div>
-</div>
-<div class="metadata">
-<a href="./papers/ceriad/index.html" class="no-external">
-<div class="listing-date">
-Jun 20, 2024
-</div>
-<div class="listing-author">
-Oliver Chang, Anuj Ajay Kamat, William Self
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-categories="cHl0aG9uJTJDQ05OJTJDU2ltdWxhdGlvbg==" data-listing-date-sort="1638691200000" data-listing-file-modified-sort="1749284268563" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="402">
-<div class="thumbnail"><a href="./papers/investigating-cnns/index.html" class="no-external">
-
-<img loading="lazy" src="./papers/investigating-cnns/unreal-example.png" class="thumbnail-image">
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./papers/investigating-cnns/index.html" class="no-external">Investigating Neural Network Architectures, Techniques, and Datasets for Autonomous Navigation in Simulation</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('cHl0aG9u'); return false;">python</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('Q05O'); return false;">CNN</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('U2ltdWxhdGlvbg=='); return false;">Simulation</div>
-
-</div>
-<div class="delink listing-description"><a href="./papers/investigating-cnns/index.html" class="no-external">
-While training robots to navigate autonomously is a growing area of research, collecting large and diverse datasets from real environments is expensive and time-consuming.…
-</a></div>
-</div>
-<div class="metadata">
-<a href="./papers/investigating-cnns/index.html" class="no-external">
-<div class="listing-date">
-Dec 5, 2021
-</div>
-<div class="listing-author">
-Oliver Chang, Christiana Marchese, Jared Mejia, Anthony J. Clark
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">No matching items</div>
-</div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";

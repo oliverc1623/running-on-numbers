@@ -1,0 +1,18 @@
+---
+title: "Investigating Neural Network Architectures, Techniques, and Datasets for Autonomous Navigation in Simulation"
+author: "Oliver Chang, Anuj Ajay Kamat, William Self"
+email: oliverc1622@gmail.com
+date: "2024-06-20"
+categories: [python, DRL, LLMs]
+image: "main-fig.svg"
+---
+
+![](main-fig.svg){}
+
+# Abstract
+
+Deep reinforcement learning (DRL) is becoming an increasingly common technique to train agents to accomplish autonomous driving tasks (Kiran et al., 2021). However, DRL models, trained end-to-end, lack internal reasoning and planning for complex states and large action spaces (Dasgupta et al., 2023). Large language models (LLMs) could provide reasoning for autonomous vehicle systems and have demonstrate high-level reasoning across various tasks such as text generation (Wei et al., 2023), visual question and answer (VQA) (Liu et al., 2023a), and image generation (Huang et al., 2022). We investigate how to integrate cognitive reasoning from LLMs into autonomous vehicles that are trained with DRL. In this paper, we adapt the Planner-Actor-Reporter framework for autonomous driving tasks in Highway-Env and CARLA (Dasgupta et al., 2023; Leurent, 2018; Dosovitskiy et al., 2017). The work from Dasgupta et al. (2023) introduce the Planner-Actor-Reporter framework and apply it in gridworld reinforcement learning environments. We extend on their research by applying their framework to two autonomous driving environments, leveraging LLaVA as a visual reporter, and demonstrating common-sense driving reasoning using GPT-3.5-Turbo as the planner (Liu et al., 2023a). This paper opens new possibilities for safe, reliable, and interpretable decision making for autonomous vehicles by leveraging LLMs.
+
+--- 
+
+Checkout our full paper [here](https://openreview.net/forum?id=B0oFBKFlgs)!
