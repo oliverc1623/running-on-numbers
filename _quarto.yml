@@ -9,6 +9,8 @@ website:
   google-analytics: "G-BJQPN133Q6"
   navbar:
     right:
+      - index.qmd
+      - papers.qmd
       - about.qmd
       - icon: github
         href: https://github.com/oliverc1623

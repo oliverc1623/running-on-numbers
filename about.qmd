@@ -20,3 +20,157 @@ about:
 ---
 
 Runner, PhD Student, and baseball fan - but not necessarily in that order.
+
+```{=html}
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Resume</title>
+  <style>
+    /* --- basic palette & typography --- */
+    html { color:#1a1a1a; background:#fdfdfd; }
+    body {
+      margin:0 auto;
+      max-width:65em; /* wider page */
+      padding:40px;
+      font-kerning:normal;
+      hyphens:auto;
+      overflow-wrap:break-word;
+      text-rendering:optimizeLegibility;
+    }
+    h1,h2,h3,h4,h5,h6{margin:1.2em 0 0.6em}
+    p{margin:0.8em 0}
+    a{color:inherit;text-decoration:none;border-bottom:1px solid currentColor}
+    a:hover{opacity:.75}
+
+    /* --- responsive tweaks --- */
+    @media (max-width:600px){body{padding:12px;font-size:0.9em}}
+
+    /* --- tables (for two‑column rows) --- */
+    table{width:100%;border-collapse:collapse;margin:0.5em 0}
+    td,th{padding:0.15em 0}
+    th{text-align:left;font-weight:600}
+    td:last-child{text-align:right}
+
+    /* remove decorative borders / lines */
+    hr{display:none}
+    tbody,th{border:none}
+
+    /* header */
+    header{text-align:center;margin-bottom:2.5em}
+    span.smallcaps{font-variant:small-caps}
+  </style>
+</head>
+<body>
+<header>
+  <h1 class="title">Resume</h1>
+</header>
+<div class="center">
+  <h3><span class="smallcaps">Elias Oliver Chang</span><br>
+  Santa Clara, CA<br>
+  <a href="mailto:elochang@ucsc.edu">elochang (at) ucsc.edu</a> &#124;
+  <a href="https://www.linkedin.com/in/oliver-chang-423a10171/">linkedin.com/in/oliver-chang-423a10171</a> &#124;
+  <a href="https://github.com/oliverc1623">github.com/oliverc1623</a>
+</div>
+
+<!-- ======== EDUCATION ======== -->
+<h2 id="education">Education</h2>
+<ul>
+<li>
+  <table>
+    <tr><th>University of California Santa Cruz</th><td>Santa Cruz, CA</td></tr>
+    <tr><td>Ph.D. & M.S. Computer Science 3.90/4.00 GPA</td><td>09/2022 – 06/2027</td></tr>
+  </table>
+  <p><u>Relevant courses:</u> AI, Deep Learning (TensorFlow/PyTorch), Computer Architecture, Compiler Design, NLP (Transformers)</p>
+</li>
+<li>
+  <table>
+    <tr><th>Pomona College</th><td>Claremont, CA</td></tr>
+    <tr><td>B.A. Computer Science & Mathematics 3.62/4.00 GPA</td><td>09/2018 – 05/2022</td></tr>
+  </table>
+  <p>Thesis: “Fast Matrix Multiplication: A Song of Mathematics and Computer Science”</p>
+</li>
+</ul>
+
+<!-- ======== EXPERIENCE ======== -->
+<h2 id="experience">Experience</h2>
+<ul>
+<li>
+  <table>
+    <tr><th>Graduate Student Researcher</th><td>Santa Cruz, CA</td></tr>
+    <tr><td>University of California Santa Cruz</td><td>09/2022 – Present</td></tr>
+  </table>
+  <ul>
+    <li>Invented transferable <strong>RL</strong> algorithm for continuous control (PyTorch + SAC), achieving 67% higher reward than baseline.</li>
+    <li>Vectorized algorithm with Torch Compile & CUDA Graphs, 5× faster across 500k timesteps.</li>
+    <li>Designed novel MTL‑based reward to uncover 2‑D vulnerabilities (vs 1‑D) in adversarial RL.</li>
+    <li>First‑author paper in preparation for <strong>AAAI 2026</strong>.</li>
+  </ul>
+</li>
+<li>
+  <table>
+    <tr><th>AI Program Coordinator Intern</th><td>San Jose, CA</td></tr>
+    <tr><td>Lumentum</td><td>06/2024 – 09/2024</td></tr>
+  </table>
+  <ul>
+    <li>Automated company‑wide meeting summaries via Azure Functions + Microsoft Graph, saving 90 hours/month.</li>
+    <li>Eliminated <strong>$250k/yr</strong> Teams Premium spend using GPT‑4o summarization.</li>
+    <li>Built Python prompt‑engineering toolkit; codebase adopted by two engineers.</li>
+    <li>Enhanced CNN training pipeline (EfficientNetV2, AUC 0.97) with DuckDB, S3 and PyTests.</li>
+  </ul>
+</li>
+<li>
+  <table>
+    <tr><th>Research Assistant</th><td>Claremont, CA</td></tr>
+    <tr><td>Pomona College</td><td>05/2021 – 07/2022</td></tr>
+  </table>
+  <ul>
+    <li>Boosted CNN domain adaptation by 7% via visual perturbation dataset generation.</li>
+    <li>Demonstrated RNN ≥ ResNet by 9% through Seaborn visualisation and statistical tests.</li>
+    <li>First‑author paper, IEEE SSCI 2021.</li>
+  </ul>
+</li>
+</ul>
+
+<!-- ======== PROJECTS ======== -->
+<h2 id="projects">Projects</h2>
+<ul>
+<li>
+  <table>
+    <tr><th>Collaborative Embodied Reasoning in AVs <a href="https://github.com/oliverc1623/ceriad">[code]</a></th><td>09/2023 – 08/2024</td></tr>
+  </table>
+  <ul>
+    <li>Improved CARLA decision‑making using ChatGPT, LLaMA, and LLaVA; +50 test passes.</li>
+    <li>Curated 20k‑image dataset for LLaVA fine‑tuning, yielding concise scene descriptions.</li>
+    <li>Docker + Kubernetes deployment used by six lab members for remote GUI runs.</li>
+  </ul>
+</li>
+<li>
+  <table>
+    <tr><th>Deep Learning Course Project <a href="https://github.com/oliverc1623/CSE244-Final-Project">[code]</a></th><td>09/2023 – 12/2023</td></tr>
+  </table>
+  <ul>
+    <li>Achieved 72% accuracy on composite dataset via ResNet‑152 fine‑tuning (PyTorch).</li>
+    <li>+15% improvement using cosine LR schedule, weighted sampling & image augments.</li>
+    <li>Top‑quartile performance in class Kaggle competition (30 students).</li>
+  </ul>
+</li>
+</ul>
+
+<!-- ======== PUBLICATIONS ======== -->
+<h2 id="publications">Publications</h2>
+<ul>
+<li>Chang O., Kamat A.A., Self W. “Collaborative Embodied Reasoning in Autonomous Driving”. <em>Training Agents with Foundation Models</em>, RLC 2024.</li>
+<li>Chang O. “Solving Phase Ordering with Off‑Policy DRL”. <em>EuroLLVM 2024</em>.</li>
+<li>Chang O., Marchese C. et al. “Investigating NN Architectures for Autonomous Navigation”. <em>IEEE SSCI 2021</em>.</li>
+<li>Chang O., Gilpin L. “Policy Gradient for Image‑Based AVs”. <em>BayLearn 2023</em>.</li>
+<li>Roberto C., Chang O. et al. “eXplainable AI for DRL”. <em>AAAI 2024</em>.</li>
+</ul>
+
+</body>
+</html>
+
+```

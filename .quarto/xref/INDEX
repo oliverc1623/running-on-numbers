@@ -37,5 +37,11 @@
   },
   "posts/predicting-xwoba-with-swingpath/index.qmd": {
     "index.html": "f24600ee"
+  },
+  "papers.qmd": {
+    "papers.html": "8a7258d3"
+  },
+  "papers/predicting-xwoba-with-swingpath/index.qmd": {
+    "index.html": "11b4ad4d"
   }
 }

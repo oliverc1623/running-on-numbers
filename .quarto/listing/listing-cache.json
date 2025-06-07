@@ -5,6 +5,9 @@
     ],
     "test.qmd": [
       "papers"
+    ],
+    "papers.qmd": [
+      "papers"
     ]
   }
 }

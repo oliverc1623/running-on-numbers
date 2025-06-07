@@ -2,23 +2,23 @@
 title: "Predicting xwOBA with Swing Path"
 author: "Oliver Chang"
 email: oliverc1622@gmail.com
-date: "2025-05-25"
+date: "2025-06-07"
 categories: [pytorch, regression, MLB]
 image: "swingpath-img.png"
 ---
 
 ```{python}
+#| code-fold: true
 import pandas as pd
 
 df = pd.read_csv("data.csv")
-df.describe()
+df.describe().round(4)
 ```
 
 ```{python}
-df.columns
-```
+#| code-fold: true
+#| warning: false
 
-```{python}
 import numpy as np
 import plotly.express as px
 import plotly.graph_objects as go

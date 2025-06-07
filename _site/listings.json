@@ -15,5 +15,9 @@
       "/papers/post-with-code/index.html",
       "/papers/welcome/index.html"
     ]
+  },
+  {
+    "listing": "/papers.html",
+    "items": []
   }
 ]
