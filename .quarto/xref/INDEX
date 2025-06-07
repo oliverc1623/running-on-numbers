@@ -43,5 +43,8 @@
   },
   "papers/predicting-xwoba-with-swingpath/index.qmd": {
     "index.html": "11b4ad4d"
+  },
+  "papers/investigating-cnns/index.qmd": {
+    "index.html": "d5642f4e"
   }
 }

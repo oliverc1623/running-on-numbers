@@ -18,6 +18,8 @@
   },
   {
     "listing": "/papers.html",
-    "items": []
+    "items": [
+      "/papers/investigating-cnns/index.html"
+    ]
   }
 ]

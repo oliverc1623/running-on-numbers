@@ -241,7 +241,7 @@ gtag('config', 'G-BJQPN133Q6', { 'anonymize_ip': true});
   <ul>
     <li>Invented transferable <strong>RL</strong> algorithm for continuous control (PyTorch&nbsp;+&nbsp;SAC), achieving 67% higher reward than baseline.</li>
     <li>Vectorized algorithm with Torch&nbsp;Compile &amp; CUDA&nbsp;Graphs,&nbsp;5× faster across&nbsp;500k timesteps.</li>
-    <li>Designed novel MTL‑based reward to uncover 2‑D vulnerabilities (vs&nbsp;1‑D) in adversarial RL.</li>
+    <li>Developed a novel SAC reward function by using an MTL-robustness formulation to train an adversarial RL agent, successfully finding vulnerabilities in a 2 dimensional search space instead of 1 dimension.</li>
     <li>First‑author paper in preparation for <strong>AAAI&nbsp;2026</strong>.</li>
   </ul>
 </li>
@@ -259,10 +259,10 @@ gtag('config', 'G-BJQPN133Q6', { 'anonymize_ip': true});
 </tbody>
 </table>
   <ul>
-    <li>Automated company‑wide meeting summaries via Azure Functions + Microsoft Graph, saving 90&nbsp;hours/month.</li>
-    <li>Eliminated <strong>$250k/yr</strong> Teams&nbsp;Premium spend using GPT‑4o summarization.</li>
-    <li>Built Python prompt‑engineering toolkit; codebase adopted by two engineers.</li>
-    <li>Enhanced CNN training pipeline (EfficientNetV2, AUC&nbsp;0.97) with DuckDB, S3 and PyTests.</li>
+    <li>Automated company-wide meeting summaries by developing an Azure Function app that retrieves Teams meeting transcripts via Microsoft Graph API, saving the company 90 hours of manual labor.</li>
+    <li>Saved <strong>$250,000/year</strong> in liscensing fees by implementing summarizer with OpenAI API (GPT-4o) and Azure Function, eliminating the need for Microsoft Teams Premium for 4,500 employees.</li>
+    <li>Wrote Python code to Prompt Engineer consistent summary generation, generate markdown, and distribute email meeting organizers, resulting in a bitbucket codebase that is used and maintained among 2 employee engineers.</li>
+    <li>Improved model training workflows by implementing data integrity checks and handling compatibility with DuckDB, AWS S3, and PyTests, contributing to a CNN (EfficientNetV2) model achieving an AUC of 0.97.</li>
   </ul>
 </li>
 <li>
