@@ -1,0 +1,107 @@
+---
+title: "Linear Regression"
+author: "Oliver Chang"
+email: oliverc1622@gmail.com
+date: "2025-06-15"
+categories: [numpy, regression, MLB]
+image: "ops-main.png"
+---
+
+# Introduction
+
+Linear Regression—long before transformers and LLMs, it served as one of the first tools in the machine learning toolbox. Despite the rise of complex models, its role in modern statistical analysis remains essential and unshaken.
+
+Rregression models measure the statistical relationship of an dependent variable ($y$), and a series of other variables ($x_i$). They are widely used for prediction, estimation, hypothesis testing, and modeling causal relationships. Independate variables serve as inputs into a system and take on different values freely. Dependent variables are those values that change as a consequence of change in other values in the system. $X$ can refers to *predictor* or *explanatory variable*. $Y$ denotes the response variable.
+
+# Firt Order Linear Model
+
+$$Y=\theta_0 + \theta_1 X$$
+
+where Y is the dependent variable, $\theta_0$ is the y-incercept, $\theta_1$ is the slop of the line, and $X$ is the independent variable.
+
+This is the standard $y=mx + b$ model taught in middle school.
+
+From this, we can create a hypothesis function (model):
+
+$$h_\theta(x) = \theta_0 + \theta_1 x.$$
+
+Note that we use a lowercase $x$ to denote an individual data point. How do we find the optimal $\theta$ coefficients? Sure we can plot the data and eye-ball a drawn line where half of the data points lie above and the other half below the line. But consider an application like baseball data. A historic game like baseball has decades of seasons. If we were to model batting average $(\frac{\text{hits}}{\text{at-bats}})$, it would be impossible to guess the best-fitted line by hand. We need a cleverer method. 
+
+We turn to least-squares linear regression.
+Cost function: 
+$$Cost(\theta) = \frac{1}{2\times n}\sum_{i=0}^{n}(h_\theta(x^{(i)}) - y^{(i)})^2.$$
+
+The cost function is takes the average of square-error differences among all data points. We fit by solving $\text{min}_\theta Cost(\theta)$ or in other words, the parameters $\theta$ that minimze the mean squared-error (MSE).
+
+Gradient descent is the method we use to find the optimal $\theta$ values. More formally,
+
+$$\theta_j = \theta_j - \alpha \frac{\partial Cost(\theta)}{\partial \theta_j}.$$
+
+$\alpha$ is the learning rate. Calculus is inescapable. One of its most powerful contributions to humanity is the ability to systematically find optimal values—a cornerstone of decision-making in science, economics, engineering, and machine learning. Let's solve for $\theta_0$ and $\theta_1$ for first-order linear regression.
+
+We first take the partial derivative with respect to $\theta_j$
+
+\begin{align}
+    \frac{\partial Cost(\theta)}{\partial \theta_j} &= \frac{\partial}{\partial \theta_j} \frac{1}{2n}\sum_{i=0}^{n}(h_\theta(x^{(i)}) - y)^2 \\
+    &= \frac{\partial}{\partial \theta_j} \frac{1}{2n}\sum_{i=0}^{n}((\theta_0 + \theta_1 x) - y)^2 \\
+    &= \frac{1}{2n} \sum_{i=0}^{n}\frac{\partial}{\partial \theta_j}((\theta_0 + \theta_1 x) - y)^2 \\ 
+    &= \frac{1}{2n}\sum_{i=0}^{n}2((\theta_0 + \theta_1 x) - y) \frac{\partial}{\partial \theta_j}((\theta_0 + \theta_1 x) - y) \\
+
+    &= \frac{1}{2n}\sum_{i=0}^{n}2((\theta_0 + \theta_1 x) - y) (\frac{\partial}{\partial \theta_0}\theta_0 +  \frac{\partial}{\partial \theta_1} \theta_1 x) \\
+
+    &= \frac{1}{n}\sum_{i=0}^{n}((\theta_0 + \theta_1 x) - y) (\frac{\partial}{\partial \theta_0}\theta_0 +  \frac{\partial}{\partial \theta_1} \theta_1 x)
+\end{align}
+
+Hence, 
+
+$$\frac{\partial Cost(\theta)}{\partial\theta_0} = \frac{1}{n}\sum_{i=0}^{n}((\theta_0 + \theta_1 x) - y) (1)$$
+and
+$$\frac{\partial Cost(\theta)}{\partial\theta_1} = \frac{1}{n}\sum_{i=0}^{n}((\theta_0 + \theta_1 x) - y) (x^{(i)}).$$
+
+Now solve for $\theta_0$ and $\theta_1$.
+
+$$
+\begin{align}
+    \frac{\partial Cost(\theta)}{\partial \theta_0} &= 0 \\
+    \frac{1}{n}\sum_{i=0}^{n}((\theta_0 + \theta_1 x) - y) & =0\\
+    \sum_{i=0}^{n}\theta_0 + \sum_{i=0}^{n}\theta_1x^{(i)} + \sum_{i=0}^{n}y &= 0 \\
+    \sum_{i=0}^{n}\theta_1x^{(i)} + \sum_{i=0}^{n}y &= -\sum_{i=0}^{n}\theta_0 \\
+    \sum_{i=0}^{n}\theta_1x^{(i)} + \sum_{i=0}^{n}y &= -n\theta_0 \\
+    \frac{1}{n}\sum_{i=0}^{n}\theta_1x^{(i)} + \frac{1}{n}\sum_{i=0}^{n}y &= \theta_0 \\
+    \theta_1\bar{x} + \bar{y} &= -\theta_0 \\
+    - \theta_1\bar{x} - \bar{y} &= \theta_0
+\end{align}
+$$
+
+$$
+\begin{align}
+    \frac{\partial Cost(\theta)}{\partial \theta_1} &= 0 \\
+    \frac{1}{n}\sum_{i=0}^{n}((\theta_0 + \theta_1 x) - y x^{(i)} & =0\\
+    \sum_{i=0}^{n}\theta_0 + \sum_{i=0}^{n}\theta_1x^{(i)} + \sum_{i=0}^{n}y &= 0 \\
+    \sum_{i=0}^{n}\theta_1x^{(i)} + \sum_{i=0}^{n}y &= \sum_{i=0}^{n}\theta_0 \\
+    \sum_{i=0}^{n}\theta_1x^{(i)} + \sum_{i=0}^{n}y &= n\theta_0 \\
+    \frac{1}{n}\sum_{i=0}^{n}\theta_1x^{(i)} + \frac{1}{n}\sum_{i=0}^{n}y &= \theta_0 \\
+    \theta_1\bar{x} + \bar{y} &= \theta_0
+\end{align}
+$$
+
+```{python}
+#| code-fold: true
+#| warning: false
+
+import pandas as pd
+from pybaseball import team_batting
+import seaborn as sns
+
+data = team_batting(2015, 2025)
+
+data = data[["Team", "Season", "R", "AVG", "OBP", "SLG", "OPS", "wOBA"]]
+data = data[(data["Season"] != 2020) & (data["Season"] != 2025)]
+
+# melt to facetgrid by metrics
+long_df = data.melt(id_vars=["Team", "R", "Season"], value_vars=["AVG", "OBP", "OPS", "SLG", "wOBA"], var_name="Metric", value_name="Value")
+
+g = sns.FacetGrid(long_df, col="Metric", col_wrap=3, height=4, sharex=False, sharey=False)
+g.map_dataframe(sns.scatterplot, x="Value", y="R")
+```
+

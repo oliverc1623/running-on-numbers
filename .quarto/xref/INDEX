@@ -49,5 +49,8 @@
   },
   "papers/ceriad/index.qmd": {
     "index.html": "931a78a1"
+  },
+  "posts/ops-linear-regression/index.qmd": {
+    "index.html": "10b31c28"
   }
 }
